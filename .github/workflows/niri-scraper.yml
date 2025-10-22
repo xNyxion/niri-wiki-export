@@ -1,0 +1,34 @@
+name: Sync Niri Wiki
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  clone-and-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout target repo
+        uses: actions/checkout@v4
+
+      - name: Clone the niri.wiki repo
+        run: |
+          git clone https://github.com/YaLTeR/niri.wiki.git temp-wiki
+
+      - name: Prepare docs directory
+        run: |
+          mkdir -p docs
+          cp -r temp-wiki/*.md docs/
+          rm -rf temp-wiki
+
+      - name: Commit and push changes
+        env:
+          TOKEN: ${{ secrets.NIRI_SCRAPER }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${TOKEN}@github.com/xNyxion/niri-wiki-export.git
+          git add docs
+          git commit -m "Sync wiki from niri.wiki [auto]" || echo "No changes to commit"
+          git push origin main
