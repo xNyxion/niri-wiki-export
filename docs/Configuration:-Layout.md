@@ -97,7 +97,7 @@ layout {
 }
 ```
 
-<sup>Since: next release</sup> You can override these settings for specific [outputs](./Configuration:-Outputs#layout-config-overrides) and [named workspaces](./Configuration:-Named-Workspaces#layout-config-overrides).
+<sup>Since: 25.11</sup> You can override these settings for specific [outputs](./Configuration:-Outputs#layout-config-overrides) and [named workspaces](./Configuration:-Named-Workspaces#layout-config-overrides).
 
 ### `gaps`
 

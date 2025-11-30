@@ -10,9 +10,15 @@ Fedora:
 
 Arch Linux (via [paru](https://github.com/morganamilo/paru)):
 
-    sudo pacman -Syu niri xwayland-satellite xdg-desktop-portal-gnome xdg-desktop-portal-gtk
+    sudo pacman -Syu niri xwayland-satellite xdg-desktop-portal-gnome xdg-desktop-portal-gtk alacritty
     paru -S dms-shell-bin matugen wl-clipboard cliphist cava qt6-multimedia-ffmpeg
     systemctl --user add-wants niri.service dms
+
+Ubuntu 25.10 and above:
+
+    sudo add-apt-repository ppa:avengemedia/danklinux
+    sudo add-apt-repository ppa:avengemedia/dms
+    sudo apt install niri dms
 
 After running these commands, log out, choose Niri in your display manager, and log back in.
 Or, if not using a display manager, run `niri-session` on a TTY.
